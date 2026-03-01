@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="icon" th:href="@{/img/favicon.png}" type="image/png">
+    <title>Projects | Aditya sain</title>
+    
+    <link rel="stylesheet" th:href="@{/css/bootstrap.css}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+
+<body>
+
+    <div th:replace="~{header :: header}"></div>
+
+    <section class="banner_area">
+        <div class="banner_inner d-flex align-items-center">
+            <div class="container">
+                <div class="banner_content text-center">
+                    <h2>My Projects</h2>
+                    <div class="page_link">
+                      <br>
+                    </div>
+                </div>
+                
+                
+                
+            </div>
+        </div>
+    </section>
+
+    <section class="features_area section_gap">
+        <div class="container">
+            <div class="main_title text-center">
+                <h2>Technical Showcase</h2>
+                <p>Explore my recent Full-Stack Development & AI integrations.</p>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-4 col-md-6 mb-5" th:each="project : ${projectList}">
+                    <div class="feature_item">
+                        
+                        <img th:src="@{'/img/projects/' + ${project.imageFileName}}" alt="Project Image">
+                        
+                        <h4 th:text="${project.title}">Project Title</h4>
+                        
+                        <div class="mb-3 mt-2">
+                            <span class="badge-custom" th:text="${project.techStack}">Tech Stack</span>
+                        </div>
+                        
+                        <p th:text="${project.description}" style="font-size: 15px !important; text-align: justify;">
+                            Project description goes here.
+                        </p>
+                        
+                        <div class="mt-4">
+                            <a th:if="${project.githubLink != null and !project.githubLink.isEmpty()}" 
+                               th:href="${project.githubLink}" target="_blank" class="primary_btn" 
+                               style="padding: 10px 20px; font-size: 14px;">
+                               <i class="fa fa-github"></i> GitHub
+                            </a>
+                            
+                            <a th:if="${project.liveLink != null and !project.liveLink.isEmpty()}" 
+                               th:href="${project.liveLink}" target="_blank" class="primary_btn" 
+                               style="padding: 10px 20px; font-size: 14px; background: #004d40;">
+                               <i class="fa fa-external-link"></i> Live Demo
+                            </a>
+                        </div>
+
+                    </div>
+                </div>
+                </div>
+            
+        </div>
+    </section>
+
+    <div th:replace="~{footer :: footer}"></div>
+    
+    <script th:src="@{/js/jquery-3.2.1.min.js}"></script>
+    <script th:src="@{/js/bootstrap.min.js}"></script>
+</body>
+</html>

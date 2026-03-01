@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="icon" th:href="@{/img/favicon.png}" type="image/png">
+    <title>Contact Aditya | Java Backend Developer</title>
+    
+    <link rel="stylesheet" th:href="@{/css/bootstrap.css}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+
+<body>
+
+    <div th:replace="~{header :: header}"></div>
+
+    <section class="banner_area">
+        <div class="banner_inner d-flex align-items-center">
+            <div class="container">
+                <div class="banner_content text-center">
+                    <h2 style="font-weight: 800;">Get In Touch</h2>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact_area section_gap">
+        <div class="container">
+            
+            <!-- Success Message -->
+            <div th:if="${result}" class="row mb-5">
+                <div class="col-lg-12">
+                    <div class="alert alert-success alert-dismissible fade show text-center" role="alert" 
+                         style="border-radius: 20px; box-shadow: var(--clay-shadow-out); background: #fff; color: #00b894; border: none;">
+                        <strong th:text="${result}">Message Sent Successfully!</strong>
+                        <button type="button" class="close" data-dismiss="alert">
+                            <span>×</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+
+                <!-- Contact Info -->
+                <div class="col-lg-4">
+                    <div class="contact_info">
+
+                        <div class="info_item" style="background:#fff;padding:25px;border-radius:25px;box-shadow:var(--clay-shadow-out);margin-bottom:20px;">
+                            <i class="fa fa-map-marker" style="font-size:30px;color:#00b894;"></i>
+                            <h6 class="mt-2">Jaipur, Rajasthan</h6>
+                            <p>India</p>
+                        </div>
+
+                        <div class="info_item" style="background:#fff;padding:25px;border-radius:25px;box-shadow:var(--clay-shadow-out);margin-bottom:20px;">
+                            <i class="fa fa-envelope" style="font-size:25px;color:#00b894;"></i>
+                            <h6 class="mt-2">
+                                <a href="mailto:aadityaa0006@gmail.com" style="color:#004d40;">
+                                    aadityaa0006@gmail.com
+                                </a>
+                            </h6>
+                            <p>Feel free to reach out for backend opportunities.</p>
+                        </div>
+
+                        <div class="info_item" style="background:#fff;padding:25px;border-radius:25px;box-shadow:var(--clay-shadow-out);">
+                            <i class="fa fa-briefcase" style="font-size:25px;color:#00b894;"></i>
+                            <h6 class="mt-2">Open to Opportunities</h6>
+                            <p>Backend roles, internships & collaboration</p>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Contact Form -->
+                <div class="col-lg-8">
+                    <form th:action="@{/client/savecontact}" method="post" class="contact_form">
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group mb-4">
+                                    <input type="text" class="form-control" name="name" placeholder="Your Name" required>
+                                </div>
+
+                                <div class="form-group mb-4">
+                                    <input type="email" class="form-control" name="email" placeholder="Your Email Address" required>
+                                </div>
+
+                                <div class="form-group mb-4">
+                                    <input type="text" class="form-control" name="subject" placeholder="Subject" required>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group mb-4">
+                                    <textarea class="form-control" name="message" rows="8" placeholder="Your Message" required></textarea>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12 text-right">
+                                <button type="submit" class="primary_btn" style="width:220px;">
+                                    <span>Send Message</span>
+                                </button>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+
+            </div>
+
+            <!-- Google Map (Fixed Version) -->
+         <div class="mt-5 pt-4">
+    <iframe
+        src="https://www.google.com/maps?q=Hawa%20Mahal,Jaipur&z=16&output=embed"
+        width="100%"
+        height="450"
+        style="border:0;border-radius:30px;box-shadow:var(--clay-shadow-out);"
+        allowfullscreen
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade">
+    </iframe>
+</div>
+
+        </div>
+    </section>
+
+    <div th:replace="~{footer :: footer}"></div>
+    
+    <script th:src="@{/js/jquery-3.2.1.min.js}"></script>
+    <script th:src="@{/js/bootstrap.min.js}"></script>
+
+</body>
+</html>

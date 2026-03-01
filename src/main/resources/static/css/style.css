@@ -1,0 +1,200 @@
+/* Aditya - Professional Portfolio Master Stylesheet 
+   Theme: Oceanic Teal Claymorphism 
+   Branding: Aditya sain
+   Style: Hollow Cyber Outline Headings
+*/
+
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700;800&display=swap');
+
+:root {
+    --clay-bg: #e0f2f1;
+    --clay-card: #ffffff;
+    --clay-primary: #00b894; /* Oceanic Teal */
+    --clay-shadow-out: 10px 10px 20px #b2dfdb, -10px -10px 20px #ffffff;
+    --clay-shadow-in: inset 4px 4px 8px rgba(0,0,0,0.05), inset -4px -4px 8px rgba(255,255,255,0.8);
+    --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    --bright-white: #ffffff; /* 🟢 Updated to White for Hover */
+}
+
+/* --- Global Settings --- */
+body { 
+    background-color: var(--clay-bg); 
+    font-family: 'Quicksand', sans-serif; 
+    line-height: 1.7; 
+    color: #2d3436; 
+}
+
+h1, h2, h3, h4 { color: #004d40; font-weight: 800; }
+
+/* --- ⚪ Navigation Link White Brightness --- */
+.navbar-nav .nav-item .nav-link {
+    color: #004d40 !important;
+    font-weight: 700;
+    font-size: 16px;
+    padding: 10px 20px !important;
+    transition: var(--transition);
+    position: relative;
+}
+
+/* 🟢 Cursor jane par Pure White Glow aur Brightness */
+.navbar-nav .nav-item .nav-link:hover {
+    color: var(--bright-white) !important;
+    transform: translateY(-3px) scale(1.05);
+    text-shadow: 0px 0px 15px rgba(255, 255, 255, 1); /* Intense White Glow */
+}
+
+/* --- Navigation Fix --- */
+.header_area.navbar_fixed .main_menu {
+    background: rgba(224, 242, 241, 0.8);
+    backdrop-filter: blur(10px);
+    border-radius: 30px;
+    box-shadow: var(--clay-shadow-out);
+}
+
+/* --- 💎 NEW: Hollow Cyber Outline Headings (Strict Fix) --- */
+
+/* 1. Banner Headings (About Me, Technical Expertise etc.) */
+.banner_content h2 {
+    font-size: 65px !important;
+    font-weight: 900 !important;
+    color: transparent !important; /* Text transparent */
+    -webkit-text-stroke: 2px #ffffff; /* White Outline */
+    text-transform: uppercase;
+    letter-spacing: 8px;
+    margin-bottom: 20px;
+    transition: var(--transition);
+    cursor: default;
+}
+
+/* Hover par banner heading fill ho jayegi */
+.banner_content h2:hover {
+    color: #ffffff !important;
+    text-shadow: 0px 0px 20px rgba(255, 255, 255, 0.6);
+    -webkit-text-stroke: 0px;
+}
+
+/* 2. Body Section Titles (Main headings inside white area) */
+.main_title h2, .features_area h3, .contact_area h3 {
+    font-size: 48px !important;
+    font-weight: 800 !important;
+    color: transparent !important;
+    -webkit-text-stroke: 2px var(--clay-primary); /* Teal Outline */
+    margin-bottom: 30px !important;
+    transition: var(--transition);
+    display: inline-block;
+    cursor: default;
+}
+
+/* Hover par section heading gradient se fill ho jayegi */
+.main_title h2:hover, .features_area h3:hover, .contact_area h3:hover {
+    background: linear-gradient(135deg, #004d40 0%, #00b894 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -webkit-text-stroke: 0px;
+    transform: scale(1.02);
+}
+
+/* --- Banner & Typography --- */
+.banner_content h1 {
+    font-size: 4.2rem !important;
+    font-weight: 800 !important; 
+    letter-spacing: -1px;
+    background: linear-gradient(135deg, #00b894 0%, #004d40 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 8px;
+}
+
+.banner_content h5 {
+    font-size: 20px !important;
+    font-weight: 700 !important;
+    color: #004d40;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    border-left: 4px solid #00b894;
+    padding-left: 15px;
+    margin-bottom: 25px;
+}
+
+p { font-size: 17.5px !important; font-weight: 500; line-height: 1.8; color: #2d3436; }
+
+/* 🟢 Highlighting & Tech Badges */
+.highlight { color: #00b894 !important; font-weight: 800 !important; }
+
+.badge-custom {
+    display: inline-block; padding: 8px 18px; background: rgba(0, 184, 148, 0.1);
+    color: #004d40; border: 1px solid #00b894; border-radius: 50px;
+    font-size: 14px; font-weight: 700; margin: 0 8px 10px 0;
+}
+
+/* 🟢 Buttons & Social Icons */
+.primary_btn {
+    background: var(--clay-primary);
+    color: #fff !important;
+    padding: 12px 35px;
+    border-radius: 50px;
+    font-weight: 700;
+    transition: var(--transition);
+    display: inline-block;
+    border: none;
+    box-shadow: 8px 8px 15px rgba(0, 184, 148, 0.2);
+}
+
+.primary_btn:hover {
+    transform: scale(1.05) translateY(-2px);
+    filter: brightness(1.2); /* Brighter on hover */
+}
+
+/* 🟢 Service Cards & Photo Fix */
+.feature_item {
+    background: var(--clay-card) !important;
+    border-radius: 35px !important;
+    padding: 20px !important; 
+    box-shadow: var(--clay-shadow-out) !important;
+    border: 1px solid rgba(255, 255, 255, 0.8) !important;
+    transition: var(--transition);
+    height: 100%;
+    overflow: hidden; 
+    text-align: center;
+}
+
+.feature_item img {
+    width: 100% !important; 
+    height: 200px !important; 
+    object-fit: cover !important; 
+    border-radius: 25px !important; 
+    margin-bottom: 20px;
+    box-shadow: var(--clay-shadow-in);
+    transition: transform 0.4s ease, filter 0.4s ease; /* ✅ hover smooth */
+}
+
+/* ✅ Hover Effect Fix */
+.feature_item:hover img {
+    transform: scale(1.05);
+    filter: brightness(1.08);
+}
+
+/* --- ⚪ Contact Form: White Brightness & Glow --- */
+.contact_form .form-control {
+    background: #ffffff !important;
+    border-radius: 20px;
+    box-shadow: var(--clay-shadow-in);
+    padding: 18px;
+    transition: var(--transition);
+    border: 2px solid transparent;
+    color: #004d40;
+}
+
+/* Jab cursor name, email, etc. par jaye toh ye Pure White chamkega */
+.contact_form .form-control:hover {
+    background: #ffffff !important;
+    transform: translateY(-2px);
+    border-color: var(--bright-white) !important; 
+    box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.8) !important; /* Intense White Glow */
+}
+
+.contact_form .form-control:focus {
+    border-color: var(--clay-primary);
+    box-shadow: 0px 10px 20px rgba(0, 184, 148, 0.2);
+    outline: none;
+}

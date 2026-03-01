@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add New Service | Admin</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.css}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        body { background: #f4f7f6; padding: 50px 0; font-family: 'Quicksand', sans-serif; }
+        .form-card { background: #fff; border-radius: 20px; padding: 40px; box-shadow: 0 15px 35px rgba(0,0,0,0.1); border: none; }
+        .btn-save { background: #00b894; color: white; border-radius: 50px; padding: 10px 40px; font-weight: bold; transition: 0.3s; border: none; }
+        .btn-save:hover { background: #004d40; transform: scale(1.05); }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="form-card">
+                <h2 class="text-center mb-4" style="color: #004d40; font-weight: 800;">🚀 Add New Service</h2>
+                <div th:if="${result}" class="alert alert-info text-center" th:text="${result}"></div>
+                
+                <form th:action="@{/admin/addService}" method="post" enctype="multipart/form-data"> 
+                    <div class="form-group mb-3">
+                        <label class="font-weight-bold">Service Title</label>
+                        <input type="text" name="title" class="form-control" placeholder="e.g. Java Full Stack Development" style="border-radius: 10px;">
+                    </div>
+                    <div class="form-group mb-3">
+                        <label class="font-weight-bold">Description</label>
+                        <textarea name="description" class="form-control" rows="4" placeholder="Describe the service..." style="border-radius: 10px;"></textarea>
+                    </div>
+                    <div class="form-group mb-4">
+                        <label class="font-weight-bold">Service Icon/Image</label>
+                        <input type="file" name="servicefile" class="form-control-file p-2 w-100" style="background: #e0f2f1; border-radius: 10px;">
+                    </div>
+                    <div class="text-center">
+                        <button type="submit" class="btn-save">Save Service</button>
+                    </div>
+                </form>
+                <div class="text-center mt-4">
+                    <a th:href="@{/admin/home}" class="text-muted"><i class="fa fa-arrow-left"></i> Back to Dashboard</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

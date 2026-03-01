@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="icon" th:href="@{/img/favicon.png}" type="image/png">
+    <title>Technical Expertise | Aditya - Java Backend Developer</title>
+    
+    <link rel="stylesheet" th:href="@{/css/bootstrap.css}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+
+<body>
+    <div th:replace="~{header :: header}"></div>
+    
+    <section class="banner_area">
+        <div class="banner_inner d-flex align-items-center">
+            <div class="container">
+                <div class="banner_content text-center">
+                    <h2 style="font-weight: 800;">Technical Expertise</h2>
+                    <div class="page_link">
+                       <br>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="features_area section_gap_top">
+        <div class="container">
+            <div class="row justify-content-center mb-5">
+                <div class="col-lg-8 text-center">
+                    <h3 style="color: #00b894; font-weight: 700; text-transform: uppercase;">
+                        Backend Engineering & System Development
+                    </h3>
+                    <p class="mt-3">
+                        I specialize in <b class="highlight">Java Backend Development</b> 
+                        with a focus on scalable architecture, secure REST APIs, 
+                        database design, and production-ready system implementation.
+                    </p>
+                </div>
+            </div>
+
+            <div class="row feature_inner">
+
+                <!-- Dynamic Services (Images Same As Before) -->
+                <div class="col-lg-4 col-md-6 mb-4" th:each="service : ${listOfServices}">
+                    <div class="feature_item">
+                        
+                        <img th:src="@{'/img/services/' + ${service.filename}}" 
+                             th:alt="${service.title}">
+
+                        <h4 th:text="${service.title}">Service Title</h4>
+                        <p th:text="${service.description}">
+                            Service details.
+                        </p>
+
+                    </div>
+                </div>
+
+                <!-- Empty Fallback -->
+                <div th:if="${#lists.isEmpty(listOfServices)}" class="col-lg-12 text-center">
+                    <h3 style="color: #b2dfdb; margin-top: 50px;">
+                        Backend & AI expertise modules coming soon!
+                    </h3>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <div th:replace="~{footer :: footer}"></div>
+
+    <script th:src="@{/js/jquery-3.2.1.min.js}"></script>
+    <script th:src="@{/js/bootstrap.min.js}"></script>
+</body>
+</html>

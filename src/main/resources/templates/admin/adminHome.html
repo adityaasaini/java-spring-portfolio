@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard | Aditya Sain</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.css}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        body { background-color: #f4f7f6; padding: 50px 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        .dashboard-card { background: #fff; border-radius: 15px; padding: 40px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); border: none; }
+        .admin-header { color: #004d40; font-weight: 800; border-bottom: 2px solid #00b894; padding-bottom: 15px; margin-bottom: 30px; }
+        .nav-link-custom { 
+            display: flex; align-items: center; padding: 15px 20px; margin-bottom: 15px;
+            background: #e0f2f1; color: #004d40; border-radius: 10px; font-weight: 600; 
+            transition: all 0.3s ease; text-decoration: none !important;
+        }
+        .nav-link-custom:hover { background: #00b894; color: white; transform: translateX(10px); }
+        .nav-link-custom i { margin-right: 15px; font-size: 20px; }
+        .btn-logout { background: #ff7675; color: white; border-radius: 50px; padding: 10px 30px; font-weight: bold; border: none; margin-top: 20px; cursor: pointer; }
+        .btn-logout:hover { background: #d63031; }
+        .security-link { background: #fff3cd; color: #856404; } /* Thoda alag color security ke liye */
+        .security-link:hover { background: #ffc107; color: #000; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="dashboard-card text-center">
+                <h2 class="admin-header">🛠️ ADMIN CONTROL PANEL</h2>
+                
+                <div class="text-left">
+                    <a th:href="@{/admin/readAllContacts}" class="nav-link-custom">
+                        <i class="fa fa-envelope"></i> Read All Contacts
+                    </a>
+                    <a th:href="@{/admin/addService}" class="nav-link-custom">
+                        <i class="fa fa-cogs"></i> Add Service
+                    </a>
+                    <a th:href="@{/admin/readAllServices}" class="nav-link-custom">
+                        <i class="fa fa-list"></i> Read All Services
+                    </a>
+                    <a th:href="@{/admin/uploadResume}" class="nav-link-custom">
+                        <i class="fa fa-file-pdf-o"></i> Upload Resume
+                    </a>
+
+                    <a th:href="@{/admin/change-password}" class="nav-link-custom security-link">
+                        <i class="fa fa-key"></i> Change Admin Password
+                    </a>
+
+                    <hr> 
+                    
+                    <a th:href="@{/admin/add-project}" class="nav-link-custom" style="background: #00b894; color: white;">
+                        <i class="fa fa-plus-circle"></i> Add New Project
+                    </a>
+                    <a th:href="@{/admin/projects}" class="nav-link-custom">
+                        <i class="fa fa-code"></i> Manage All Projects
+                    </a>
+                </div>
+
+                <form th:action="@{/logout}" method="post">
+                    <button type="submit" class="btn-logout">
+                        <i class="fa fa-sign-out"></i> Logout
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

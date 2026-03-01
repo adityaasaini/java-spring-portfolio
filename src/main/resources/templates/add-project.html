@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add New Project | Admin Dashboard</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.css}">
+    <style>
+        body { background-color: #f4f7f6; padding: 40px 0; }
+        .admin-card { background: #fff; border-radius: 15px; padding: 30px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+        .form-control { border-radius: 8px; }
+        .btn-custom { background: #00b894; color: white; border-radius: 50px; padding: 10px 30px; font-weight: bold; }
+        .btn-custom:hover { background: #004d40; color: white; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="admin-card">
+                <h3 class="text-center mb-4" style="color: #004d40; font-weight: 800;">🚀 Add New Project</h3>
+                
+                <form th:action="@{/admin/projects/save}" th:object="${project}" method="post" enctype="multipart/form-data">
+                    
+                    <div class="form-group mb-3">
+                        <label><b>Project Title:</b></label>
+                        <input type="text" th:field="*{title}" class="form-control" placeholder="e.g., PacketShield DPI Engine" required>
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <label><b>Tech Stack Used:</b></label>
+                        <input type="text" th:field="*{techStack}" class="form-control" placeholder="e.g., Java, Spring Boot, Hibernate" required>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 form-group mb-3">
+                            <label><b>GitHub Link:</b></label>
+                            <input type="url" th:field="*{githubLink}" class="form-control" placeholder="https://github.com/...">
+                        </div>
+                        <div class="col-md-6 form-group mb-3">
+                            <label><b>Live Link (Optional):</b></label>
+                            <input type="url" th:field="*{liveLink}" class="form-control" placeholder="https://...">
+                        </div>
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <label><b>Upload Project Image:</b></label>
+                        <input type="file" name="image" class="form-control" accept="image/png, image/jpeg, image/jpg" required>
+                    </div>
+
+                    <div class="form-group mb-4">
+                        <label><b>Project Description:</b></label>
+                        <textarea th:field="*{description}" class="form-control" rows="10" placeholder="Write a detailed description about your project..." required></textarea>
+                    </div>
+
+                    <div class="text-center">
+                        <a th:href="@{/admin/projects}" class="btn btn-secondary mr-2" style="border-radius: 50px;">Cancel</a>
+                        <button type="submit" class="btn btn-custom">Save Project</button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login | Aditya Sain</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.css}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+    <style>
+        body { 
+            background: linear-gradient(135deg, #00b894 0%, #004d40 100%); 
+            height: 100vh; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            font-family: 'Quicksand', sans-serif;
+            margin: 0;
+        }
+        .login-card { 
+            background: rgba(255, 255, 255, 0.95); 
+            border-radius: 25px; 
+            padding: 50px; 
+            box-shadow: 0 20px 50px rgba(0,0,0,0.2); 
+            border: none; 
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+        .login-icon {
+            font-size: 50px;
+            color: #00b894;
+            margin-bottom: 20px;
+        }
+        .form-control { 
+            border-radius: 50px; 
+            padding: 12px 25px; 
+            border: 2px solid #e0f2f1; 
+            margin-bottom: 20px;
+            transition: 0.3s;
+        }
+        .form-control:focus { 
+            border-color: #00b894; 
+            box-shadow: 0 0 10px rgba(0, 184, 148, 0.1); 
+        }
+        .btn-login { 
+            background: #00b894; 
+            color: white; 
+            border-radius: 50px; 
+            padding: 12px; 
+            font-weight: 800; 
+            border: none; 
+            width: 100%; 
+            transition: 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 15px rgba(0, 184, 148, 0.3);
+        }
+        .btn-login:hover { 
+            background: #004d40; 
+            transform: translateY(-2px); 
+        }
+        .error-msg { 
+            color: #d63031; 
+            background: #fff5f5; 
+            padding: 10px; 
+            border-radius: 10px; 
+            font-size: 0.9rem; 
+            margin-bottom: 20px; 
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="login-card">
+        <div class="login-icon">
+            <i class="fa fa-user-circle"></i>
+        </div>
+        
+        <h2 style="color: #2c3e50; font-weight: 800; margin-bottom: 10px;">Admin Login</h2>
+        <p class="text-muted mb-4">Aapka swagat hai, Aditya!</p>
+
+        <div th:if="${param.error}" class="error-msg">
+            <i class="fa fa-exclamation-triangle"></i> Invalid username or password
+        </div>
+
+        <form th:action="@{/doLogin}" method="post"> 
+            <div class="input-group mb-3">
+                <input type="text" name="user" class="form-control" placeholder="Username" required> 
+            </div>
+            
+            <div class="input-group mb-4">
+                <input type="password" name="pass" class="form-control" placeholder="Password" required> 
+            </div>
+            
+            <button type="submit" class="btn-login">
+                Login <i class="fa fa-sign-in"></i>
+            </button>
+        </form>
+
+        <div class="mt-4">
+            <a th:href="@{/client/home}" style="text-decoration: none; color: #7f8c8d; font-size: 0.85rem;">
+                <i class="fa fa-arrow-left"></i> Back to Client Site
+            </a>
+        </div>
+    </div>
+
+</body>
+</html>

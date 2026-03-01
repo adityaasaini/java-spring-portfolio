@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin - Add New Project</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body class="bg-light">
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow">
+                <div class="card-header bg-dark text-white text-center">
+                    <h4>Add New Project</h4>
+                </div>
+                <div class="card-body">
+                    
+                    <div th:if="${param.success}" class="alert alert-success text-center">
+                        Project Saved Successfully!
+                    </div>
+
+                    <form th:action="@{/admin/save-project}" method="post" enctype="multipart/form-data">
+                        
+                        <div class="form-group">
+                            <label>Project Title:</label>
+                            <input type="text" name="title" class="form-control" required placeholder="e.g. Task Manager">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Project Description:</label>
+                            <textarea name="description" class="form-control" rows="5" required placeholder="Write a detailed description..."></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Tech Stack (Comma Separated):</label>
+                            <input type="text" name="techStack" class="form-control" required placeholder="e.g. Java, Spring Boot, Hibernate">
+                        </div>
+
+                        <div class="form-group">
+                            <label>GitHub Link:</label>
+                            <input type="url" name="githubLink" class="form-control" placeholder="https://github.com/...">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Live Demo Link (Optional):</label>
+                            <input type="url" name="liveLink" class="form-control" placeholder="https://...">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Upload Project Image:</label>
+                            <input type="file" name="image" class="form-control-file" accept="image/*" required>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-block mt-4">Save Project</button>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
