@@ -109,11 +109,7 @@
 		</dependency>
 
 
-		<dependency>
-			<groupId>com.example</groupId>
-			<artifactId>Sb-1_Security-2_MODFIE</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-		</dependency>
+	
 	</dependencies>
 
 	<build>
