@@ -4,7 +4,7 @@ COPY . .
 RUN mvn clean package -DskipTests
 
 # Step 2: Run stage
-FROM openjdk:17-jdk-slim
+FROM eclipse-temurin:17-jdk-focal
 COPY --from=build /target/*.jar demo.jar
 EXPOSE 8080
-ENTRYPOINT ["java","-jar","demo.jar"] 
+ENTRYPOINT ["java","-jar","demo.jar"]
