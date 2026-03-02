@@ -5,9 +5,7 @@ import javax.validation.constraints.Size;
 
 import org.springframework.web.multipart.MultipartFile;
 
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.AllArgsConstructor;
+
 
 /*
  * NOTE:
@@ -16,9 +14,7 @@ import lombok.AllArgsConstructor;
  * manual constructors, getters & setters bhi add kiye gaye hain.
  */
 
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
+
 public class ServiceDto {
 
     @Size(min = 2, max = 30, message = "Invalid Title Length")
