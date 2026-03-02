@@ -3,17 +3,21 @@
         <nav class="navbar navbar-expand-lg navbar-light">
             <div class="container">
                 <a class="navbar-brand logo_h" th:href="@{/client/home}" style="font-weight: 800; font-size: 26px; color: #004d40;">
-           
                 </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
-                    <span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
+                
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" 
+                        style="background-color: #056B54; border-color: #056B54; padding: 5px 10px;">
+                    <span class="icon-bar" style="background-color: #ffffff; display: block; width: 22px; height: 2px; margin-bottom: 4px;"></span>
+                    <span class="icon-bar" style="background-color: #ffffff; display: block; width: 22px; height: 2px; margin-bottom: 4px;"></span>
+                    <span class="icon-bar" style="background-color: #ffffff; display: block; width: 22px; height: 2px;"></span>
                 </button>
+                
                 <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
                     <ul class="nav navbar-nav menu_nav justify-content-end" style="width:100%;">
                         <li class="nav-item"><a class="nav-link" th:href="@{/client/home}">Home</a></li>
                         <li class="nav-item"><a class="nav-link" th:href="@{/client/about}">About</a></li>
                         <li class="nav-item"><a class="nav-link" th:href="@{/client/services}">Services</a></li>
-                       <li class="nav-item"><a class="nav-link" th:href="@{/client/projects}">Projects</a></li>
+                        <li class="nav-item"><a class="nav-link" th:href="@{/client/projects}">Projects</a></li>
                         <li class="nav-item"><a class="nav-link" th:href="@{/client/contact}">Contact</a></li>
                     </ul>
                 </div>
