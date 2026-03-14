@@ -66,6 +66,13 @@
                 padding: 20px;
                 backdrop-filter: blur(15px);
                 border: 1px solid rgba(255, 255, 255, 0.1);
+                /* Added for smooth manual toggle */
+                display: none; 
+                transition: all 0.3s ease;
+            }
+            .navbar-collapse.show-menu {
+                display: block !important;
+                animation: fadeIn 0.3s ease-in-out;
             }
             .navbar-nav {
                 flex-direction: column !important;
@@ -74,6 +81,11 @@
             .navbar-toggler {
                 margin-left: auto;
             }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
     </style>
 
@@ -86,13 +98,13 @@
                 </span>
             </a>
             
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" style="border: none; outline: none; padding: 5px;">
+            <button class="navbar-toggler custom-toggler" type="button" aria-label="Toggle navigation" style="border: none; outline: none; padding: 5px; cursor: pointer;">
                 <span style="background-color: #ffffff; display: block; width: 22px; height: 2px; margin-bottom: 5px; border-radius: 2px;"></span>
                 <span style="background-color: #ffffff; display: block; width: 22px; height: 2px; margin-bottom: 5px; border-radius: 2px;"></span>
                 <span style="background-color: #ffffff; display: block; width: 22px; height: 2px; border-radius: 2px;"></span>
             </button>
             
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <div class="navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ml-auto text-center align-items-center" style="list-style: none; padding: 0; margin: 0;">
                     
                     <li class="nav-item"><a class="nav-link nav-link-custom" th:href="@{/client/home}">Home</a></li>
@@ -113,4 +125,23 @@
             </div>
         </nav>
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const toggler = document.querySelector('.custom-toggler');
+            const menu = document.getElementById('navbarSupportedContent');
+
+            if(toggler && menu) {
+                toggler.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    // Toggle custom class directly to avoid Bootstrap clash
+                    if(menu.classList.contains('show-menu')) {
+                        menu.classList.remove('show-menu');
+                    } else {
+                        menu.classList.add('show-menu');
+                    }
+                });
+            }
+        });
+    </script>
 </header>
