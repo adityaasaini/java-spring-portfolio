@@ -11,7 +11,6 @@
     
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     
     <style>
@@ -84,7 +83,7 @@
                      th:attr="data-aos-delay=${iterStat.index * 100}">
                     
                     <div class="img-container relative h-56 bg-gray-900 w-full">
-                        <img th:src="${project.imageFileName != null and !project.imageFileName.isEmpty()} ? @{'/img/projects/' + ${project.imageFileName}} : 'invalid-path'" 
+                        <img th:src="${project.imageFileName != null and !project.imageFileName.isEmpty()} ? @{/img/projects/{name}(name=${project.imageFileName})} : 'invalid-path'" 
                              alt="Project Image" 
                              class="w-full h-full object-cover img-zoom">
                              
