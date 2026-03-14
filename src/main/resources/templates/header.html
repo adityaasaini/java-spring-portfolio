@@ -1,43 +1,113 @@
 <header class="header_area" th:fragment="header" style="position: fixed; top: 20px; left: 0; right: 0; z-index: 9999; display: flex; justify-content: center; pointer-events: none;">
-    <div style="pointer-events: auto; width: 100%; max-width: 900px; padding: 0 15px;">
-        <nav class="navbar navbar-expand-lg" style="background: rgba(15, 15, 15, 0.85); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 50px; padding: 10px 25px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); display: flex !important; flex-wrap: nowrap !important; align-items: center !important; justify-content: space-between !important;">
+    
+    <style>
+        /* === HOVER EFFECTS FIX === */
+        .custom-nav .nav-link-custom {
+            padding: 5px 10px !important;
+            color: #ffffff !important;
+            font-weight: 600;
+            font-size: 14px;
+            transition: color 0.3s ease;
+        }
+        
+        /* Cursor le jane par text teal color ka ho jayega */
+        .custom-nav .nav-link-custom:hover {
+            color: #00b894 !important;
+        }
+
+        /* Contact Button Hover Effect */
+        .contact-btn {
+            background: #ffffff !important;
+            color: #000000 !important;
+            font-weight: 700;
+            font-size: 13px;
+            padding: 8px 22px !important;
+            border-radius: 30px;
+            transition: all 0.3s ease !important;
+            display: inline-block;
+            text-decoration: none !important;
+        }
+        .contact-btn:hover {
+            background-color: #00b894 !important;
+            color: #ffffff !important;
+            transform: scale(1.05);
+        }
+
+        /* === PC View Settings (992px and above) === */
+        @media (min-width: 992px) {
+            .custom-nav {
+                border-radius: 50px !important;
+                padding: 10px 25px !important;
+            }
+            .navbar-collapse.collapse {
+                display: flex !important;
+                height: auto !important;
+                visibility: visible !important;
+            }
+            .navbar-nav {
+                flex-direction: row !important;
+                gap: 20px;
+            }
+            .nav-item {
+                margin: 0 !important;
+            }
+        }
+
+        /* === Mobile View Settings (Below 992px) === */
+        @media (max-width: 991.98px) {
+            .custom-nav {
+                border-radius: 25px !important;
+                padding: 10px 20px !important;
+            }
+            .navbar-collapse {
+                background: rgba(15, 15, 15, 0.95);
+                border-radius: 20px;
+                margin-top: 15px;
+                padding: 20px;
+                backdrop-filter: blur(15px);
+                border: 1px solid rgba(255, 255, 255, 0.1);
+            }
+            .navbar-nav {
+                flex-direction: column !important;
+                gap: 15px;
+            }
+            .navbar-toggler {
+                margin-left: auto;
+            }
+        }
+    </style>
+
+    <div style="pointer-events: auto; width: 100%; max-width: 950px; padding: 0 15px;">
+        <nav class="navbar navbar-expand-lg custom-nav" style="background: rgba(15, 15, 15, 0.85); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.08); box-shadow: 0 10px 30px rgba(0,0,0,0.5); width: 100%; transition: all 0.3s ease;">
             
-            <a class="navbar-brand" th:href="@{/client/home}" style="text-decoration: none; display: flex !important; align-items: center !important; opacity: 1 !important; visibility: visible !important; margin-right: 20px;">
+            <a class="navbar-brand" th:href="@{/client/home}" style="text-decoration: none; margin-right: 0;">
                 <span style="color: #ffffff; font-weight: 800; font-size: 22px; letter-spacing: 0.5px; font-family: 'Quicksand', sans-serif;">
                     Aditya<span style="color: #00b894;">.</span>
                 </span>
             </a>
             
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" style="border: none; outline: none; padding: 5px;">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" style="border: none; outline: none; padding: 5px;">
                 <span style="background-color: #ffffff; display: block; width: 22px; height: 2px; margin-bottom: 5px; border-radius: 2px;"></span>
                 <span style="background-color: #ffffff; display: block; width: 22px; height: 2px; margin-bottom: 5px; border-radius: 2px;"></span>
                 <span style="background-color: #ffffff; display: block; width: 22px; height: 2px; border-radius: 2px;"></span>
             </button>
             
-            <div class="collapse navbar-collapse" id="navbarSupportedContent" style="display: flex !important; visibility: visible !important; flex-basis: auto !important; width: 100%;">
-                
-                <ul class="nav navbar-nav menu_nav ml-auto" style="display: flex !important; flex-direction: row !important; align-items: center !important; gap: 35px; margin: 0 0 0 auto !important; padding: 0; list-style: none; opacity: 1 !important;">
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto text-center align-items-center" style="list-style: none; padding: 0; margin: 0;">
                     
-                    <li class="nav-item"><a class="nav-link" th:href="@{/client/home}" style="color: #ffffff; font-weight: 600; font-size: 15px; transition: 0.3s; padding: 0;" onmouseover="this.style.color='#00b894'" onmouseout="this.style.color='#ffffff'">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" th:href="@{/client/about}" style="color: #ffffff; font-weight: 600; font-size: 15px; transition: 0.3s; padding: 0;" onmouseover="this.style.color='#00b894'" onmouseout="this.style.color='#ffffff'">About</a></li>
-                    <li class="nav-item"><a class="nav-link" th:href="@{/client/services}" style="color: #ffffff; font-weight: 600; font-size: 15px; transition: 0.3s; padding: 0;" onmouseover="this.style.color='#00b894'" onmouseout="this.style.color='#ffffff'">Services</a></li>
-                    <li class="nav-item"><a class="nav-link" th:href="@{/client/projects}" style="color: #ffffff; font-weight: 600; font-size: 15px; transition: 0.3s; padding: 0;" onmouseover="this.style.color='#00b894'" onmouseout="this.style.color='#ffffff'">Projects</a></li>
+                    <li class="nav-item"><a class="nav-link nav-link-custom" th:href="@{/client/home}">Home</a></li>
+                    <li class="nav-item"><a class="nav-link nav-link-custom" th:href="@{/client/about}">About</a></li>
+                    <li class="nav-item"><a class="nav-link nav-link-custom" th:href="@{/client/services}">Services</a></li>
+                    <li class="nav-item"><a class="nav-link nav-link-custom" th:href="@{/client/projects}">Projects</a></li>
                     
                     <li class="nav-item">
-                        <a class="nav-link" th:href="@{/admin/downloadResume}" style="color: #ffffff; font-weight: 600; font-size: 15px; transition: 0.3s; display: flex; align-items: center; gap: 5px; padding: 0;" onmouseover="this.style.color='#00b894'" onmouseout="this.style.color='#ffffff'">
-                            Resume <i class="fa fa-download" style="font-size: 12px;"></i>
+                        <a class="nav-link nav-link-custom" th:href="@{/admin/downloadResume}" style="display: flex; align-items: center; justify-content: center; gap: 5px;">
+                            Resume <i class="fa fa-download" style="font-size: 11px;"></i>
                         </a>
                     </li>
                     
-                    <li class="nav-item ml-2">
-<a class="nav-link" th:href="@{/client/contact}" 
-   style="background: #ffffff; color: #000000; font-weight: 700; font-size: 14px; padding: 8px 24px !important; border-radius: 30px; transition: all 0.3s ease; display: inline-block; border: none;" 
-   onmouseover="this.style.backgroundColor='#00b894'; this.style.color='#ffffff'; this.style.transform='scale(1.05)';" 
-   onmouseout="this.style.backgroundColor='#ffffff'; this.style.color='#000000'; this.style.transform='scale(1)';"
->
-    Contact
-</a>                         
-                       
+                    <li class="nav-item ml-lg-3 mt-3 mt-lg-0">
+                        <a class="contact-btn" th:href="@{/client/contact}">Contact</a>                         
                     </li>
                 </ul>
             </div>
