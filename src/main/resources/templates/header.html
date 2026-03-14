@@ -1,26 +1,45 @@
-<header class="header_area" th:fragment="header">
-    <div class="main_menu">
-        <nav class="navbar navbar-expand-lg navbar-light">
-            <div class="container">
-                <a class="navbar-brand logo_h" th:href="@{/client/home}" style="font-weight: 800; font-size: 26px; color: #004d40;">
-                </a>
+<header class="header_area" th:fragment="header" style="position: fixed; top: 20px; left: 0; right: 0; z-index: 9999; display: flex; justify-content: center; pointer-events: none;">
+    <div style="pointer-events: auto; width: 100%; max-width: 900px; padding: 0 15px;">
+        <nav class="navbar navbar-expand-lg" style="background: rgba(15, 15, 15, 0.85); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 50px; padding: 10px 25px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); display: flex !important; flex-wrap: nowrap !important; align-items: center !important; justify-content: space-between !important;">
+            
+            <a class="navbar-brand" th:href="@{/client/home}" style="text-decoration: none; display: flex !important; align-items: center !important; opacity: 1 !important; visibility: visible !important; margin-right: 20px;">
+                <span style="color: #ffffff; font-weight: 800; font-size: 22px; letter-spacing: 0.5px; font-family: 'Quicksand', sans-serif;">
+                    Aditya<span style="color: #00b894;">.</span>
+                </span>
+            </a>
+            
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" style="border: none; outline: none; padding: 5px;">
+                <span style="background-color: #ffffff; display: block; width: 22px; height: 2px; margin-bottom: 5px; border-radius: 2px;"></span>
+                <span style="background-color: #ffffff; display: block; width: 22px; height: 2px; margin-bottom: 5px; border-radius: 2px;"></span>
+                <span style="background-color: #ffffff; display: block; width: 22px; height: 2px; border-radius: 2px;"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarSupportedContent" style="display: flex !important; visibility: visible !important; flex-basis: auto !important; width: 100%;">
                 
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" 
-                        style="background-color: #056B54; border-color: #056B54; padding: 5px 10px;">
-                    <span class="icon-bar" style="background-color: #ffffff; display: block; width: 22px; height: 2px; margin-bottom: 4px;"></span>
-                    <span class="icon-bar" style="background-color: #ffffff; display: block; width: 22px; height: 2px; margin-bottom: 4px;"></span>
-                    <span class="icon-bar" style="background-color: #ffffff; display: block; width: 22px; height: 2px;"></span>
-                </button>
-                
-                <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
-                    <ul class="nav navbar-nav menu_nav justify-content-end" style="width:100%;">
-                        <li class="nav-item"><a class="nav-link" th:href="@{/client/home}">Home</a></li>
-                        <li class="nav-item"><a class="nav-link" th:href="@{/client/about}">About</a></li>
-                        <li class="nav-item"><a class="nav-link" th:href="@{/client/services}">Services</a></li>
-                        <li class="nav-item"><a class="nav-link" th:href="@{/client/projects}">Projects</a></li>
-                        <li class="nav-item"><a class="nav-link" th:href="@{/client/contact}">Contact</a></li>
-                    </ul>
-                </div>
+                <ul class="nav navbar-nav menu_nav ml-auto" style="display: flex !important; flex-direction: row !important; align-items: center !important; gap: 35px; margin: 0 0 0 auto !important; padding: 0; list-style: none; opacity: 1 !important;">
+                    
+                    <li class="nav-item"><a class="nav-link" th:href="@{/client/home}" style="color: #ffffff; font-weight: 600; font-size: 15px; transition: 0.3s; padding: 0;" onmouseover="this.style.color='#00b894'" onmouseout="this.style.color='#ffffff'">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" th:href="@{/client/about}" style="color: #ffffff; font-weight: 600; font-size: 15px; transition: 0.3s; padding: 0;" onmouseover="this.style.color='#00b894'" onmouseout="this.style.color='#ffffff'">About</a></li>
+                    <li class="nav-item"><a class="nav-link" th:href="@{/client/services}" style="color: #ffffff; font-weight: 600; font-size: 15px; transition: 0.3s; padding: 0;" onmouseover="this.style.color='#00b894'" onmouseout="this.style.color='#ffffff'">Services</a></li>
+                    <li class="nav-item"><a class="nav-link" th:href="@{/client/projects}" style="color: #ffffff; font-weight: 600; font-size: 15px; transition: 0.3s; padding: 0;" onmouseover="this.style.color='#00b894'" onmouseout="this.style.color='#ffffff'">Projects</a></li>
+                    
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/admin/downloadResume}" style="color: #ffffff; font-weight: 600; font-size: 15px; transition: 0.3s; display: flex; align-items: center; gap: 5px; padding: 0;" onmouseover="this.style.color='#00b894'" onmouseout="this.style.color='#ffffff'">
+                            Resume <i class="fa fa-download" style="font-size: 12px;"></i>
+                        </a>
+                    </li>
+                    
+                    <li class="nav-item ml-2">
+<a class="nav-link" th:href="@{/client/contact}" 
+   style="background: #ffffff; color: #000000; font-weight: 700; font-size: 14px; padding: 8px 24px !important; border-radius: 30px; transition: all 0.3s ease; display: inline-block; border: none;" 
+   onmouseover="this.style.backgroundColor='#00b894'; this.style.color='#ffffff'; this.style.transform='scale(1.05)';" 
+   onmouseout="this.style.backgroundColor='#ffffff'; this.style.color='#000000'; this.style.transform='scale(1)';"
+>
+    Contact
+</a>                         
+                       
+                    </li>
+                </ul>
             </div>
         </nav>
     </div>

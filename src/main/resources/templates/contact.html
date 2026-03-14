@@ -4,123 +4,158 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="icon" th:href="@{/img/favicon.png}" type="image/png">
-    <title>Contact Aditya | Java Backend Developer</title>
+    <title>Contact Aditya | Software Engineer</title>
     
     <link rel="stylesheet" th:href="@{/css/bootstrap.css}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" th:href="@{/css/style.css}">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        body { background-color: #050505; color: #fff; font-family: 'Quicksand', sans-serif; overflow-x: hidden; }
+        
+        /* Premium Glass Effect */
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 24px;
+            transition: all 0.4s ease;
+        }
+        .glass-panel:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(0, 184, 148, 0.4);
+            box-shadow: 0 10px 30px rgba(0, 184, 148, 0.15);
+            transform: translateY(-5px);
+        }
+
+        .glow-text {
+            background: linear-gradient(to right, #00b894, #00d2d3);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 20px rgba(0, 184, 148, 0.3);
+        }
+
+        /* Dark Form Inputs */
+        .dark-input {
+            background: rgba(0, 0, 0, 0.4) !important;
+            border: 1px solid rgba(255, 255, 255, 0.1) !important;
+            color: #fff !important;
+            border-radius: 12px;
+            padding: 15px 20px;
+            transition: all 0.3s ease;
+        }
+        .dark-input:focus {
+            border-color: #00b894 !important;
+            box-shadow: 0 0 15px rgba(0, 184, 148, 0.2) !important;
+            outline: none;
+        }
+        .dark-input::placeholder { color: rgba(255, 255, 255, 0.4); }
+    </style>
 </head>
 
-<body>
+<body class="bg-[#050505]">
 
     <div th:replace="~{header :: header}"></div>
 
-    <section class="banner_area">
-        <div class="banner_inner d-flex align-items-center">
-            <div class="container">
-                <div class="banner_content text-center">
-                    <h2 style="font-weight: 800;">Get In Touch</h2>
-                </div>
-            </div>
+    <section class="pt-32 pb-16 relative overflow-hidden text-center">
+        <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full max-w-lg h-64 bg-[#00b894] rounded-full mix-blend-screen filter blur-[200px] opacity-20"></div>
+        <div class="container mx-auto relative z-10" data-aos="zoom-out">
+            <h2 class="text-5xl md:text-7xl font-black mb-4">Let's <span class="glow-text">Connect</span></h2>
+            <p class="text-gray-400 text-lg max-w-2xl mx-auto">Have a project in mind or just want to say hi? I'd love to hear from you.</p>
         </div>
     </section>
 
-    <section class="contact_area section_gap">
-        <div class="container">
+    <section class="py-12 px-5 relative z-10">
+        <div class="container mx-auto max-w-6xl">
             
-            <!-- Success Message -->
-            <div th:if="${result}" class="row mb-5">
-                <div class="col-lg-12">
-                    <div class="alert alert-success alert-dismissible fade show text-center" role="alert" 
-                         style="border-radius: 20px; box-shadow: var(--clay-shadow-out); background: #fff; color: #00b894; border: none;">
-                        <strong th:text="${result}">Message Sent Successfully!</strong>
-                        <button type="button" class="close" data-dismiss="alert">
-                            <span>×</span>
-                        </button>
-                    </div>
+            <div th:if="${result}" class="mb-10" data-aos="fade-down">
+                <div class="glass-panel border-[#00b894] p-4 text-center">
+                    <strong class="text-[#00b894] text-lg" th:text="${result}">Message Sent Successfully!</strong>
+                    <button type="button" class="close text-white float-right opacity-70 hover:opacity-100" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
             </div>
 
-            <div class="row">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-10">
 
-                <!-- Contact Info -->
-                <div class="col-lg-4">
-                    <div class="contact_info">
-
-                        <div class="info_item" style="background:#fff;padding:25px;border-radius:25px;box-shadow:var(--clay-shadow-out);margin-bottom:20px;">
-                            <i class="fa fa-map-marker" style="font-size:30px;color:#00b894;"></i>
-                            <h6 class="mt-2">Jaipur, Rajasthan</h6>
-                            <p>India</p>
+                <div class="lg:col-span-1 space-y-6">
+                    <div class="glass-panel p-8 flex flex-col items-center text-center" data-aos="fade-right" data-aos-delay="100">
+                        <div class="w-16 h-16 rounded-full bg-[#00b894]/10 flex items-center justify-center text-[#00b894] text-2xl mb-4">
+                            <i class="fa fa-map-marker"></i>
                         </div>
+                        <h4 class="text-xl font-bold mb-2">Location</h4>
+                        <p class="text-gray-400">Jaipur, Rajasthan<br>India</p>
+                    </div>
 
-                        <div class="info_item" style="background:#fff;padding:25px;border-radius:25px;box-shadow:var(--clay-shadow-out);margin-bottom:20px;">
-                            <i class="fa fa-envelope" style="font-size:25px;color:#00b894;"></i>
-                            <h6 class="mt-2">
-                                <a href="mailto:aadityaa0006@gmail.com" style="color:#004d40;">
-                                    aadityaa0006@gmail.com
-                                </a>
-                            </h6>
-                            <p>Feel free to reach out for backend opportunities.</p>
+                    <div class="glass-panel p-8 flex flex-col items-center text-center" data-aos="fade-right" data-aos-delay="200">
+                        <div class="w-16 h-16 rounded-full bg-[#00b894]/10 flex items-center justify-center text-[#00b894] text-2xl mb-4">
+                            <i class="fa fa-envelope"></i>
                         </div>
+                        <h4 class="text-xl font-bold mb-2">Email</h4>
+                        <a href="mailto:aadityaa0006@gmail.com" class="text-gray-400 hover:text-[#00b894] transition">aadityaa0006@gmail.com</a>
+                    </div>
 
-                        <div class="info_item" style="background:#fff;padding:25px;border-radius:25px;box-shadow:var(--clay-shadow-out);">
-                            <i class="fa fa-briefcase" style="font-size:25px;color:#00b894;"></i>
-                            <h6 class="mt-2">Open to Opportunities</h6>
-                            <p>Backend roles, internships & collaboration</p>
+                    <div class="glass-panel p-8 flex flex-col items-center text-center" data-aos="fade-right" data-aos-delay="300">
+                        <div class="w-16 h-16 rounded-full bg-[#00b894]/10 flex items-center justify-center text-[#00b894] text-2xl mb-4">
+                            <i class="fa fa-briefcase"></i>
                         </div>
-
+                        <h4 class="text-xl font-bold mb-2">Opportunities</h4>
+                        <p class="text-gray-400">Open to Full-Stack & Backend roles, internships.</p>
                     </div>
                 </div>
 
-                <!-- Contact Form -->
-                <div class="col-lg-8">
-                    <form th:action="@{/client/savecontact}" method="post" class="contact_form">
-
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group mb-4">
-                                    <input type="text" class="form-control" name="name" placeholder="Your Name" required>
+                <div class="lg:col-span-2">
+                    <div class="glass-panel p-10 h-full" data-aos="fade-left" data-aos-delay="200">
+                        <h3 class="text-3xl font-bold mb-8">Send me a message</h3>
+                        
+                        <form th:action="@{/client/savecontact}" method="post" class="space-y-6">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div class="form-group m-0">
+                                    <input type="text" class="form-control dark-input w-full" name="name" placeholder="Your Name" required>
                                 </div>
-
-                                <div class="form-group mb-4">
-                                    <input type="email" class="form-control" name="email" placeholder="Your Email Address" required>
-                                </div>
-
-                                <div class="form-group mb-4">
-                                    <input type="text" class="form-control" name="subject" placeholder="Subject" required>
+                                <div class="form-group m-0">
+                                    <input type="email" class="form-control dark-input w-full" name="email" placeholder="Your Email Address" required>
                                 </div>
                             </div>
 
-                            <div class="col-md-6">
-                                <div class="form-group mb-4">
-                                    <textarea class="form-control" name="message" rows="8" placeholder="Your Message" required></textarea>
-                                </div>
+                            <div class="form-group m-0">
+                                <input type="text" class="form-control dark-input w-full" name="subject" placeholder="Subject" required>
                             </div>
 
-                            <div class="col-md-12 text-right">
-                                <button type="submit" class="primary_btn" style="width:220px;">
-                                    <span>Send Message</span>
+                            <div class="form-group m-0">
+                                <textarea class="form-control dark-input w-full" name="message" rows="6" placeholder="How can I help you?" required></textarea>
+                            </div>
+
+                            <div class="text-right pt-4">
+                                <button type="submit" class="bg-[#00b894] hover:bg-white text-black font-bold py-4 px-10 rounded-full transition-all duration-300 shadow-[0_0_20px_rgba(0,184,148,0.3)] hover:scale-105 flex items-center gap-2 ml-auto">
+                                    Send Message <i class="fa fa-paper-plane"></i>
                                 </button>
                             </div>
-                        </div>
-
-                    </form>
+                        </form>
+                    </div>
                 </div>
 
             </div>
 
-            <!-- Google Map (Fixed Version) -->
-         <div class="mt-5 pt-4">
-    <iframe
-        src="https://www.google.com/maps?q=Hawa%20Mahal,Jaipur&z=16&output=embed"
-        width="100%"
-        height="450"
-        style="border:0;border-radius:30px;box-shadow:var(--clay-shadow-out);"
-        allowfullscreen
-        loading="lazy"
-        referrerpolicy="no-referrer-when-downgrade">
-    </iframe>
-</div>
+            <div class="mt-16" data-aos="zoom-in" data-aos-delay="200">
+                <div class="glass-panel p-2 overflow-hidden h-[450px]">
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d113911.23381666669!2d75.7237628!3d26.8853465!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x396c4adf4c57e281%3A0xce1c63a0cf22e09!2sJaipur%2C%20Rajasthan!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin" 
+                        width="100%" 
+                        height="100%" 
+                        style="border:0; border-radius: 20px;" 
+                        allowfullscreen="" 
+                        loading="lazy" 
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
+            </div>
 
         </div>
     </section>
@@ -129,6 +164,9 @@
     
     <script th:src="@{/js/jquery-3.2.1.min.js}"></script>
     <script th:src="@{/js/bootstrap.min.js}"></script>
-
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({ once: true, offset: 50, duration: 800, easing: 'ease-out-cubic' });
+    </script>
 </body>
 </html>

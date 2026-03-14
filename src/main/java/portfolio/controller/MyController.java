@@ -48,7 +48,13 @@ public class MyController {
     }
 
     @GetMapping("/home")
-    public String home() {
+    public String home(Model model) {
+        // Homepage ke liye data fetch karna
+        model.addAttribute("listOfServices", servicesServices.readServices());
+        
+        List<Project> projectList = projectService.getAllProjects();
+        model.addAttribute("projectList", projectList);
+        
         return "index";
     }
 
