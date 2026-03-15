@@ -84,16 +84,15 @@
                     
                     <div class="img-container relative h-56 bg-gray-900 w-full overflow-hidden flex items-center justify-center">
                         
-                        <img th:if="${project.imageFileName != null and !project.imageFileName.isEmpty()}" 
+                        <img th:if="${not #strings.isEmpty(project.imageFileName)}" 
                              th:src="@{'/img/projects/' + ${project.imageFileName}}" 
                              alt="Project Image" 
-                             class="w-full h-full object-cover img-zoom"
-                             onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=800&auto=format&fit=crop';">
+                             class="w-full h-full object-cover img-zoom">
                              
-                        <img th:unless="${project.imageFileName != null and !project.imageFileName.isEmpty()}" 
-                             src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=800&auto=format&fit=crop" 
-                             alt="Default Project Placeholder" 
-                             class="w-full h-full object-cover img-zoom opacity-60 filter grayscale">
+                        <img th:if="${#strings.isEmpty(project.imageFileName)}" 
+                             src="no-image-found.jpg" 
+                             alt="No Image In Database" 
+                             class="w-full h-full object-cover img-zoom opacity-50">
 
                         <div class="absolute top-4 right-4 z-20 w-10 h-10 bg-black/70 backdrop-blur-md border border-[#00b894]/50 rounded-full flex items-center justify-center text-white shadow-lg group-hover:bg-[#00b894] group-hover:text-black transition-all duration-300">
                             <i class="fa fa-code"></i>
@@ -116,13 +115,13 @@
                         </p>
                         
                         <div class="mt-auto flex gap-3">
-                            <a th:if="${project.githubLink != null and !project.githubLink.isEmpty()}" 
+                            <a th:if="${not #strings.isEmpty(project.githubLink)}" 
                                th:href="${project.githubLink}" target="_blank" 
                                class="flex-1 text-center bg-transparent border-2 border-gray-600 hover:border-[#00b894] text-white hover:text-[#00b894] font-bold py-2.5 rounded-lg transition-all duration-300 text-sm">
                                <i class="fa fa-github mr-1"></i> GitHub
                             </a>
                             
-                            <a th:if="${project.liveLink != null and !project.liveLink.isEmpty()}" 
+                            <a th:if="${not #strings.isEmpty(project.liveLink)}" 
                                th:href="${project.liveLink}" target="_blank" 
                                class="flex-1 text-center bg-[#00b894] text-black hover:bg-white font-bold py-2.5 rounded-lg transition-all duration-300 shadow-[0_0_15px_rgba(0,184,148,0.3)] text-sm">
                                <i class="fa fa-external-link mr-1"></i> Live Demo
