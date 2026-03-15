@@ -10,15 +10,12 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     
     <script src="https://cdn.tailwindcss.com"></script>
-    
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     
     <style>
         body { background-color: #050505; color: #fff; font-family: 'Quicksand', sans-serif; overflow-x: hidden; }
         
-        /* Premium Glass Effect */
         .glass-panel {
             background: rgba(255, 255, 255, 0.02);
             backdrop-filter: blur(16px);
@@ -40,7 +37,6 @@
             text-shadow: 0 0 20px rgba(0, 184, 148, 0.3);
         }
 
-        /* Dark Form Inputs */
         .dark-input {
             background: rgba(0, 0, 0, 0.4) !important;
             border: 1px solid rgba(255, 255, 255, 0.1) !important;
@@ -48,6 +44,7 @@
             border-radius: 12px;
             padding: 15px 20px;
             transition: all 0.3s ease;
+            width: 100%;
         }
         .dark-input:focus {
             border-color: #00b894 !important;
@@ -55,6 +52,13 @@
             outline: none;
         }
         .dark-input::placeholder { color: rgba(255, 255, 255, 0.4); }
+
+        /* Animation for success message */
+        @keyframes slideIn {
+            from { transform: translateY(-20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        .alert-animate { animation: slideIn 0.5s ease-out forwards; }
     </style>
 </head>
 
@@ -62,78 +66,93 @@
 
     <div th:replace="~{header :: header}"></div>
 
-    <section class="pt-32 pb-16 relative overflow-hidden text-center">
-        <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full max-w-lg h-64 bg-[#00b894] rounded-full mix-blend-screen filter blur-[200px] opacity-20"></div>
+    <section class="pt-40 pb-12 relative overflow-hidden text-center px-5">
+        <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full max-w-lg h-64 bg-[#00b894] rounded-full mix-blend-screen filter blur-[200px] opacity-10"></div>
         <div class="container mx-auto relative z-10" data-aos="zoom-out">
-            <h2 class="text-5xl md:text-7xl font-black mb-4">Let's <span class="glow-text">Connect</span></h2>
-            <p class="text-gray-400 text-lg max-w-2xl mx-auto">Have a project in mind or just want to say hi? I'd love to hear from you.</p>
+            <h2 class="text-5xl md:text-7xl font-black mb-6">Let's <span class="glow-text">Connect</span></h2>
+            <p class="text-gray-400 text-lg max-w-2xl mx-auto leading-relaxed">
+                Have a project in mind or just want to say hi? I'd love to hear from you. 
+                My inbox is always open for new opportunities.
+            </p>
         </div>
     </section>
 
-    <section class="py-12 px-5 relative z-10">
+    <section class="py-12 px-5 relative z-10 mb-20">
         <div class="container mx-auto max-w-6xl">
             
-            <div th:if="${result}" class="mb-10" data-aos="fade-down">
-                <div class="glass-panel border-[#00b894] p-4 text-center">
-                    <strong class="text-[#00b894] text-lg" th:text="${result}">Message Sent Successfully!</strong>
-                    <button type="button" class="close text-white float-right opacity-70 hover:opacity-100" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
+            <div th:if="${result}" class="mb-12 alert-animate" data-aos="fade-down">
+                <div class="glass-panel border-[#00b894]/50 p-5 text-center flex justify-between items-center bg-[#00b894]/5">
+                    <div class="flex items-center gap-3">
+                        <i class="fa fa-check-circle text-[#00b894] text-xl"></i>
+                        <strong class="text-white font-semibold" th:text="${result}">Message Sent Successfully!</strong>
+                    </div>
+                    <button type="button" class="text-white opacity-50 hover:opacity-100 transition" onclick="this.parentElement.parentElement.style.display='none'">
+                        <i class="fa fa-times"></i>
                     </button>
                 </div>
             </div>
 
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-10">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
 
                 <div class="lg:col-span-1 space-y-6">
-                    <div class="glass-panel p-8 flex flex-col items-center text-center" data-aos="fade-right" data-aos-delay="100">
-                        <div class="w-16 h-16 rounded-full bg-[#00b894]/10 flex items-center justify-center text-[#00b894] text-2xl mb-4">
+                    <div class="glass-panel p-8 flex flex-col items-center text-center group" data-aos="fade-right" data-aos-delay="100">
+                        <div class="w-14 h-14 rounded-2xl bg-[#00b894]/10 flex items-center justify-center text-[#00b894] text-2xl mb-5 group-hover:bg-[#00b894] group-hover:text-black transition-all duration-300">
                             <i class="fa fa-map-marker"></i>
                         </div>
                         <h4 class="text-xl font-bold mb-2">Location</h4>
-                        <p class="text-gray-400">Jaipur, Rajasthan<br>India</p>
+                        <p class="text-gray-400 leading-relaxed">Jaipur, Rajasthan<br>India</p>
                     </div>
 
-                    <div class="glass-panel p-8 flex flex-col items-center text-center" data-aos="fade-right" data-aos-delay="200">
-                        <div class="w-16 h-16 rounded-full bg-[#00b894]/10 flex items-center justify-center text-[#00b894] text-2xl mb-4">
+                    <div class="glass-panel p-8 flex flex-col items-center text-center group" data-aos="fade-right" data-aos-delay="200">
+                        <div class="w-14 h-14 rounded-2xl bg-[#00b894]/10 flex items-center justify-center text-[#00b894] text-2xl mb-5 group-hover:bg-[#00b894] group-hover:text-black transition-all duration-300">
                             <i class="fa fa-envelope"></i>
                         </div>
                         <h4 class="text-xl font-bold mb-2">Email</h4>
-                        <a href="mailto:aadityaa0006@gmail.com" class="text-gray-400 hover:text-[#00b894] transition">aadityaa0006@gmail.com</a>
+                        <a href="mailto:aadityaa0006@gmail.com" class="text-gray-400 hover:text-[#00b894] transition break-all">aadityaa0006@gmail.com</a>
                     </div>
 
-                    <div class="glass-panel p-8 flex flex-col items-center text-center" data-aos="fade-right" data-aos-delay="300">
-                        <div class="w-16 h-16 rounded-full bg-[#00b894]/10 flex items-center justify-center text-[#00b894] text-2xl mb-4">
+                    <div class="glass-panel p-8 flex flex-col items-center text-center group" data-aos="fade-right" data-aos-delay="300">
+                        <div class="w-14 h-14 rounded-2xl bg-[#00b894]/10 flex items-center justify-center text-[#00b894] text-2xl mb-5 group-hover:bg-[#00b894] group-hover:text-black transition-all duration-300">
                             <i class="fa fa-briefcase"></i>
                         </div>
-                        <h4 class="text-xl font-bold mb-2">Opportunities</h4>
-                        <p class="text-gray-400">Open to Full-Stack & Backend roles, internships.</p>
+                        <h4 class="text-xl font-bold mb-2">Work</h4>
+                        <p class="text-gray-400 leading-relaxed">Available for Full-Stack & Backend roles.</p>
                     </div>
                 </div>
 
                 <div class="lg:col-span-2">
-                    <div class="glass-panel p-10 h-full" data-aos="fade-left" data-aos-delay="200">
-                        <h3 class="text-3xl font-bold mb-8">Send me a message</h3>
+                    <div class="glass-panel p-8 md:p-12 h-full" data-aos="fade-left" data-aos-delay="200">
+                        <h3 class="text-3xl font-bold mb-8 flex items-center gap-3">
+                            Send Message <span class="w-10 h-[2px] bg-[#00b894] hidden md:inline-block"></span>
+                        </h3>
                         
                         <form th:action="@{/client/savecontact}" method="post" class="space-y-6">
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                <div class="form-group m-0">
-                                    <input type="text" class="form-control dark-input w-full" name="name" placeholder="Your Name" required>
+                                <div class="space-y-2">
+                                    <label class="text-sm font-semibold text-gray-400 ml-1">Full Name</label>
+                                    <input type="text" class="dark-input" name="name" placeholder="Aditya Saini" required>
                                 </div>
-                                <div class="form-group m-0">
-                                    <input type="email" class="form-control dark-input w-full" name="email" placeholder="Your Email Address" required>
+                                <div class="space-y-2">
+                                    <label class="text-sm font-semibold text-gray-400 ml-1">Email Address</label>
+                                    <input type="email" class="dark-input" name="email" placeholder="example@mail.com" required>
                                 </div>
                             </div>
 
-                            <div class="form-group m-0">
-                                <input type="text" class="form-control dark-input w-full" name="subject" placeholder="Subject" required>
+                            <div class="space-y-2">
+                                <label class="text-sm font-semibold text-gray-400 ml-1">Subject</label>
+                                <input type="text" class="dark-input" name="subject" placeholder="Project Inquiry / Collaboration" required>
                             </div>
 
-                            <div class="form-group m-0">
-                                <textarea class="form-control dark-input w-full" name="message" rows="6" placeholder="How can I help you?" required></textarea>
+                            <div class="space-y-2">
+                                <label class="text-sm font-semibold text-gray-400 ml-1">Message</label>
+                                <textarea class="dark-input" name="message" rows="5" placeholder="Tell me more about your requirements..." required></textarea>
                             </div>
 
-                            <div class="text-right pt-4">
-                                <button type="submit" class="bg-[#00b894] hover:bg-white text-black font-bold py-4 px-10 rounded-full transition-all duration-300 shadow-[0_0_20px_rgba(0,184,148,0.3)] hover:scale-105 flex items-center gap-2 ml-auto">
+                            <div class="pt-4 flex flex-col md:flex-row items-center justify-between gap-6">
+                                <p class="text-xs text-gray-500 italic max-w-xs text-center md:text-left">
+<!--                                     * Your data is processed securely through my Java Spring Boot backend. -->
+                                </p>
+                                <button type="submit" class="w-full md:w-auto bg-[#00b894] hover:bg-white text-black font-bold py-4 px-10 rounded-xl transition-all duration-300 shadow-[0_0_20px_rgba(0,184,148,0.3)] hover:scale-105 flex items-center justify-center gap-2">
                                     Send Message <i class="fa fa-paper-plane"></i>
                                 </button>
                             </div>
@@ -143,19 +162,19 @@
 
             </div>
 
-            <div class="mt-16" data-aos="zoom-in" data-aos-delay="200">
-                <div class="glass-panel p-2 overflow-hidden h-[450px]">
-                    <iframe 
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d113911.23381666669!2d75.7237628!3d26.8853465!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x396c4adf4c57e281%3A0xce1c63a0cf22e09!2sJaipur%2C%20Rajasthan!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin" 
-                        width="100%" 
-                        height="100%" 
-                        style="border:0; border-radius: 20px;" 
-                        allowfullscreen="" 
-                        loading="lazy" 
-                        referrerpolicy="no-referrer-when-downgrade">
-                    </iframe>
-                </div>
-            </div>
+           <div class="mt-16" data-aos="zoom-in" data-aos-delay="200">
+    <div class="glass-panel p-3 overflow-hidden h-[400px] border-[#00b894]/20">
+        <iframe 
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d227748.38256243113!2d75.6504692735232!3d26.88544791796718!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x396c4adb4ad9fd21%3A0xad3fc4213c93981d!2sJaipur%2C%20Rajasthan!5e0!3m2!1sen!2sin!4v1710480000000!5m2!1sen!2sin" 
+            width="100%" 
+            height="100%" 
+            style="border:0; border-radius: 18px;" 
+            allowfullscreen="" 
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+    </div>
+</div>
 
         </div>
     </section>
