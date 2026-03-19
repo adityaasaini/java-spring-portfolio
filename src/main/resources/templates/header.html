@@ -69,6 +69,10 @@
                 /* Added for smooth manual toggle */
                 display: none; 
                 transition: all 0.3s ease;
+                
+                /* === STRICT MOBILE SCROLL FIX === */
+                max-height: 80vh;
+                overflow-y: auto;
             }
             .navbar-collapse.show-menu {
                 display: block !important;
@@ -109,8 +113,7 @@
                     
                     <li class="nav-item"><a class="nav-link nav-link-custom" th:href="@{/client/home}">Home</a></li>
                     <li class="nav-item"><a class="nav-link nav-link-custom" th:href="@{/client/about}">About</a></li>
-<!--                     <li class="nav-item"><a class="nav-link nav-link-custom" th:href="@{/client/services}">Services</a></li>
- -->                    <li class="nav-item"><a class="nav-link nav-link-custom" th:href="@{/client/projects}">Projects</a></li>
+<li class="nav-item"><a class="nav-link nav-link-custom" th:href="@{/client/projects}">Projects</a></li>
                     
                     <li class="nav-item">
                         <a class="nav-link nav-link-custom" th:href="@{/admin/downloadResume}" style="display: flex; align-items: center; justify-content: center; gap: 5px;">

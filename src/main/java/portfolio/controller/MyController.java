@@ -24,6 +24,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import portfolio.dto.ContactDto;
 import portfolio.entities.Project;
 import portfolio.services.ContactService;
+import portfolio.services.EmailService;
 import portfolio.services.ProjectService;
 import portfolio.services.ServicesServices;
 
@@ -69,30 +70,74 @@ public class MyController {
         return "services";
     }
 
+ // Services Inject karein
+    @Autowired
+    private EmailService emailService;
+
+    // Aapka purana ContactService bhi yahan hona chahiye
+    @Autowired
+    private ContactService contactService1; 
+
+
+    // =====================================================
+    // 1. PAGE OPEN KARNE KE LIYE (GET MAPPING)
+    // Ye method delete ho gaya tha, isliye 404 aa raha tha
+    // =====================================================
     @GetMapping("/contact")
     public String contact() {
-        return "contact";
+        return "contact"; // Ye aapki contact.html file ko load karta hai
     }
 
+
+    // =====================================================
+    // 2. FORM SUBMIT KARNE KE LIYE (POST MAPPING)
+    // =====================================================
     @PostMapping("/savecontact")
     public String savecontact(@Valid @ModelAttribute ContactDto contactDto,
                               BindingResult bindingResult,
                               Model model,
                               RedirectAttributes redirectAttributes) {
 
+        // Step 1: Validation check
         if (bindingResult.hasErrors()) {
             model.addAttribute("result", "invalid input");
             model.addAttribute("errors", bindingResult.getFieldErrors());
             return "contact";
         }
 
+        // Step 2: Duplicate email check
         if (contactService.isContactEmailExist(contactDto.getEmail())) {
             redirectAttributes.addFlashAttribute("result", "You have already sent");
             return "redirect:/client/contact";
         }
 
+        // Step 3: Database mein save karna
         contactService.savecontact(contactDto);
-        redirectAttributes.addFlashAttribute("result", "Contact saved successfully");
+
+        // Step 4: EMAIL SEND KARNE KA LOGIC
+        try {
+            // Email ka format aur design
+            String subject = "New Portfolio Inquiry: " + contactDto.getSubject();
+            String body = "You have received a new message from your portfolio!\n\n" +
+                          "--------------------------------------\n" +
+                          "Sender Name: " + contactDto.getName() + "\n" +
+                          "Sender Email: " + contactDto.getEmail() + "\n" +
+                          "Message:\n" + contactDto.getMessage() + "\n" +
+                          "--------------------------------------";
+
+            // Kis email par aap notification chahte hain
+            String toEmail = "aadityaa0006@gmail.com"; 
+
+            // Email bhejna
+            emailService.sendEmail(toEmail, subject, body);
+            
+        } catch (Exception e) {
+            // Agar email bhejne mein koi error aati hai (internet issue etc.)
+            System.out.println("Email notification fail ho gayi: " + e.getMessage());
+        }
+
+        // Step 5: Success message UI par bhejna
+        redirectAttributes.addFlashAttribute("result", "Message sent successfully!");
         return "redirect:/client/contact";
     }
 

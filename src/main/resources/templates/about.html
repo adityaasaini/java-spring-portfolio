@@ -158,6 +158,34 @@
         @keyframes spin-3d-3 { 0% { transform: rotateX(75deg) rotateY(15deg) rotateZ(0deg); } 100% { transform: rotateX(75deg) rotateY(15deg) rotateZ(-360deg); } }
         @keyframes core-pulse { 0% { transform: scale(0.9); box-shadow: 0 0 20px #00b894; } 100% { transform: scale(1.2); box-shadow: 0 0 50px #00d2d3, 0 0 80px #00b894; } }
         @keyframes float-icon { 0% { transform: translateY(0); } 100% { transform: translateY(-15px); } }
+        
+        /* ========================================================
+           STRICT MOBILE ONLY FIX (WILL NOT AFFECT PC VIEW)
+           ======================================================== */
+        @media (max-width: 768px) { 
+            /* 3D Core Scale Down */
+            .core-wrapper { transform: scale(0.7) !important; margin: -30px auto !important; } 
+            
+            /* Text Sizing & Alignment */
+            h1 { font-size: 2.8rem !important; line-height: 1.2 !important; text-align: center; }
+            h2 { font-size: 2.2rem !important; }
+            .md\:w-7\/12 { text-align: center !important; }
+            .md\:w-7\/12 h3 { justify-content: center !important; }
+            
+            /* Padding Adjustments */
+            .glass-panel-adv { padding: 1.5rem !important; }
+            .px-5 { padding-left: 1.2rem !important; padding-right: 1.2rem !important; }
+            
+            /* Timeline fixes */
+            .timeline-line { padding-left: 20px !important; }
+            .timeline-line::before { left: 9px !important; }
+            .timeline-line .absolute.w-10 { left: -36px !important; width: 30px !important; height: 30px !important; top: 8px !important; }
+            
+            /* Tech Stack wrap spacing */
+            .gap-5 { gap: 0.75rem !important; }
+            .px-8 { padding-left: 1.25rem !important; padding-right: 1.25rem !important; }
+            .py-4 { padding-top: 0.75rem !important; padding-bottom: 0.75rem !important; }
+        }
     </style>
 </head>
 <body class="bg-[#050505]">
