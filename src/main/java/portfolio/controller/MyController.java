@@ -33,7 +33,7 @@ import portfolio.services.ServicesServices;
 public class MyController {
 
     @Autowired
-    private ContactService contactService;
+    private ContactService contactService1;
 
     @Autowired
     private ServicesServices servicesServices;
@@ -76,18 +76,17 @@ public class MyController {
 
     // Aapka purana ContactService bhi yahan hona chahiye
     @Autowired
-    private ContactService contactService1; 
+    private ContactService contactService; // FIX: contactService1 se 1 hata diya hai
 
 
     // =====================================================
+ // =====================================================
     // 1. PAGE OPEN KARNE KE LIYE (GET MAPPING)
-    // Ye method delete ho gaya tha, isliye 404 aa raha tha
     // =====================================================
     @GetMapping("/contact")
     public String contact() {
         return "contact"; // Ye aapki contact.html file ko load karta hai
     }
-
 
     // =====================================================
     // 2. FORM SUBMIT KARNE KE LIYE (POST MAPPING)
@@ -106,18 +105,17 @@ public class MyController {
         }
 
         // Step 2: Duplicate email check
-        if (contactService.isContactEmailExist(contactDto.getEmail())) {
-            redirectAttributes.addFlashAttribute("result", "You have already sent");
+        if (contactService1.isContactEmailExist(contactDto.getEmail())) {
+            redirectAttributes.addFlashAttribute("result", "You have already sent a message!");
             return "redirect:/client/contact";
         }
 
-        // Step 3: Database mein save karna
-        contactService.savecontact(contactDto);
+        // Step 3: Database mein save karna (Turant)
+        contactService1.savecontact(contactDto);
 
-        // Step 4: EMAIL SEND KARNE KA LOGIC
+        // Step 4: EMAIL SEND KARNE KA LOGIC (@Async ki wajah se background mein jayega)
         try {
-            // Email ka format aur design
-            String subject = "New Portfolio Inquiry: " + contactDto.getSubject();
+            String subject = "Inquiry: " + contactDto.getSubject();
             String body = "You have received a new message from your portfolio!\n\n" +
                           "--------------------------------------\n" +
                           "Sender Name: " + contactDto.getName() + "\n" +
@@ -125,22 +123,24 @@ public class MyController {
                           "Message:\n" + contactDto.getMessage() + "\n" +
                           "--------------------------------------";
 
-            // Kis email par aap notification chahte hain
+            // Receiver ID (Admin ID) yahan set ki hai
             String toEmail = "aadityaa0006@gmail.com"; 
 
-            // Email bhejna
+            // Call to EmailService
             emailService.sendEmail(toEmail, subject, body);
             
         } catch (Exception e) {
-            // Agar email bhejne mein koi error aati hai (internet issue etc.)
-            System.out.println("Email notification fail ho gayi: " + e.getMessage());
+            System.out.println("Email logic trigger failed: " + e.getMessage());
         }
 
-        // Step 5: Success message UI par bhejna
+        // Step 5: Success message UI par bhejna (Turant bina screen ruke)
         redirectAttributes.addFlashAttribute("result", "Message sent successfully!");
         return "redirect:/client/contact";
-    }
-
+    } 
+    
+    
+    
+    
     @GetMapping("/downloadResume")
     public void downloadResume(HttpServletResponse response) throws IOException {
         // FIXED: Seedha disk se file uthayenge taaki upload ke turant baad download ho sake

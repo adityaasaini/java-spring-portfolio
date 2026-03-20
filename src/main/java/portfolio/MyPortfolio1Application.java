@@ -3,12 +3,14 @@ package portfolio;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.scheduling.annotation.EnableAsync; // <-- YE IMPORT ADD KIYA HAI
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import portfolio.entities.AppUser;
 import portfolio.repository.UserRepository;
 
 @SpringBootApplication
+@EnableAsync // <-- ASYNC ENABLE KARNE KE LIYE YE ZAROORI HAI
 public class MyPortfolio1Application {
 
     public static void main(String[] args) {
