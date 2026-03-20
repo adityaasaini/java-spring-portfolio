@@ -53,10 +53,37 @@ This project demonstrates:
 - Layered Service Architecture  
 
 ---
+### 🛠️ Production Challenge: Brevo API Header Error on Cloud
+
+During the deployment of this application on **Render**, I encountered a silent failure where the contact form stopped sending emails, despite working perfectly on `localhost`.
+
+**The Error Log:**
+`Illegal character(s) in message header value: xkeysib-...`
+
+**The Root Cause:**
+When cloud platforms (like Render) inject environment variables, they can sometimes append invisible characters (like trailing spaces or newline characters `\n`). Since HTTP headers strictly prohibit these characters, the Spring Boot `RestTemplate` crashed while building the request for the Brevo email API.
+
+**The Fix:**
+I implemented a defensive programming technique by sanitizing the API key using Java's `.trim()` method before appending it to the HTTP header. This ensures the environment variable is always clean and strictly formatted, regardless of the hosting platform's quirks.
+
+```java
+// Sanitizing the environment variable to prevent Header Injection errors
+HttpHeaders headers = new HttpHeaders();
+headers.setContentType(MediaType.APPLICATION_JSON);
+
+// .trim() removes hidden whitespaces/newlines injected by cloud platforms
+headers.set("api-key", apiKey.trim());
+
+
+
 
 ## 🏗️ Project Structure  
 
 ```
+
+
+
+---
 com.aditya.portfolio
 │
 ├── entities/       → Database Models
