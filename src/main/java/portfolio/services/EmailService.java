@@ -43,7 +43,7 @@ public class EmailService {
             // 1. Headers set karna
             HttpHeaders headers = new HttpHeaders();
             headers.setContentType(MediaType.APPLICATION_JSON);
-            headers.set("api-key", apiKey);
+            headers.set("api-key", apiKey.trim());
             headers.set("accept", "application/json");
 
             // 2. Email Body (JSON) banana
